@@ -11,9 +11,11 @@
 
 **파일을 읽지 않으면 작업을 시작하지 않는다.** 아래를 Read 도구로 읽는다.
 
-1. `guides/AGENT_GUIDE_CORE.md` — 항상-온 규칙 (필수)
-2. `AGENT_GUIDE.md` — 슬래시 커맨드 라우팅 테이블
+1. `AGENT_GUIDE.md` — 슬래시 커맨드 라우팅 테이블 (진입점이 지정한 canonical 소스)
+2. `guides/AGENT_GUIDE_CORE.md` — 항상-온 공통 규칙 (AGENT_GUIDE.md 가 로드를 지시)
 3. 태스크에 해당하는 skill 가이드 (`guides/<name>.md`)
+
+로드 체인: **이 파일 → `AGENT_GUIDE.md` → `guides/AGENT_GUIDE_CORE.md` → skill 가이드**.
 
 동일 세션에서 이미 Read 한 파일은 재읽기 생략 가능. "알고 있다"는 이유로는 스킵하지 않는다.
 

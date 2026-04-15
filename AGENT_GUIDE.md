@@ -27,7 +27,11 @@ scope: project
 ```
 사용자 입력
     ↓
-guides/AGENT_GUIDE_CORE.md 로드 (항상)
+CLI 진입점 (CLAUDE.md / GEMINI.md / .github/copilot-instructions.md)
+    ↓
+AGENT_GUIDE.md  (이 파일 — 라우팅 테이블)
+    ↓
+guides/AGENT_GUIDE_CORE.md  (항상-온 공통 규칙)
     ↓
 슬래시 커맨드 파싱 → 매핑 테이블 조회
     ↓
@@ -35,6 +39,8 @@ guides/AGENT_GUIDE_CORE.md 로드 (항상)
     ↓
 실행
 ```
+
+이 파일은 **진입점 바로 다음 단계**다. 진입점에서 이 파일을 읽은 뒤, 이 파일이 `guides/AGENT_GUIDE_CORE.md` 로드를 지시하고, 이어서 커맨드 매핑에 따라 필요한 skill 가이드만 로드한다.
 
 슬래시 커맨드가 없으면 자연어로 가장 적합한 행을 추론한다.
 
