@@ -11,11 +11,11 @@
 
 **파일을 읽지 않으면 작업을 시작하지 않는다.** 아래를 읽기 도구로 읽는다.
 
-1. `AGENT_GUIDE.md` — 슬래시 커맨드 라우팅 테이블 (진입점이 지정한 canonical 소스)
-2. `guides/AGENT_GUIDE_CORE.md` — 항상-온 공통 규칙 (AGENT_GUIDE.md 가 로드를 지시)
+1. `GUIDE.md` — 슬래시 커맨드 라우팅 테이블 (진입점이 지정한 canonical 소스)
+2. `guides/GUIDE_CORE.md` — 항상-온 공통 규칙 (GUIDE.md 가 로드를 지시)
 3. 태스크에 해당하는 skill 가이드 (`guides/<name>.md`)
 
-로드 체인: **이 파일 → `AGENT_GUIDE.md` → `guides/AGENT_GUIDE_CORE.md` → skill 가이드**.
+로드 체인: **이 파일 → `GUIDE.md` → `guides/GUIDE_CORE.md` → skill 가이드**.
 
 동일 세션에서 이미 읽은 파일은 재읽기 생략 가능. "알고 있다"는 이유로는 스킵하지 않는다.
 
@@ -37,7 +37,7 @@ Step 을 암묵적으로 건너뛰거나 여러 Step 을 한 문장으로 뭉개
 
 ### Phase 3: 검증 (Self-Check)
 
-작업 보고 **전에** `guides/AGENT_GUIDE_CORE.md` §5 Self-Check 를 출력한다.
+작업 보고 **전에** `guides/GUIDE_CORE.md` §5 Self-Check 를 출력한다.
 
 ### Phase 4: 후속
 
@@ -68,8 +68,8 @@ Step 을 암묵적으로 건너뛰거나 여러 Step 을 한 문장으로 뭉개
 
 ## 라우팅 / 저장 규칙 / 프로젝트 정보
 
-`AGENT_GUIDE.md` 가 canonical 소스다. 이 파일은 **Gemini CLI 전용 Phase 프로토콜과 절대 규칙**만 담는다.
+`GUIDE.md` 가 canonical 소스다. 이 파일은 **Gemini CLI 전용 Phase 프로토콜과 절대 규칙**만 담는다.
 
-- 슬래시 커맨드 라우팅 → `AGENT_GUIDE.md` §슬래시 커맨드 정의
-- 폴더·저장 규칙 → `guides/AGENT_GUIDE_CORE.md` §4
-- Project Info → `AGENT_GUIDE.md` §Project Info
+- 슬래시 커맨드 라우팅 → `GUIDE.md` §슬래시 커맨드 정의
+- 폴더·저장 규칙 → `guides/GUIDE_CORE.md` §4
+- Project Info → `GUIDE.md` §Project Info

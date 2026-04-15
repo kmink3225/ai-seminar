@@ -1,15 +1,15 @@
 ---
-name: AGENT_GUIDE
+name: GUIDE
 type: router
 version: 2.0
 last_updated: 2026-04-16
 description: >
   슬래시 커맨드 라우터. 사용자 명령에 매핑된 가이드만 로드한다.
-  공통 규칙은 guides/AGENT_GUIDE_CORE.md — 이 파일이 로드를 지시한다.
+  공통 규칙은 guides/GUIDE_CORE.md — 이 파일이 로드를 지시한다.
 scope: project
 ---
 
-# AGENT_GUIDE.md — ai-seminar 진입점
+# GUIDE.md — ai-seminar 진입점
 
 > 이 파일은 **라우터** 다. CLI 진입점이 이 파일을 읽은 뒤, 이 파일이 CORE 와 skill 가이드 로드를 지시한다.
 >
@@ -27,9 +27,9 @@ scope: project
     ↓
 CLI 진입점 (CLAUDE.md / GEMINI.md / .github/copilot-instructions.md)
     ↓
-AGENT_GUIDE.md  (이 파일 — 라우팅 테이블)
+GUIDE.md  (이 파일 — 라우팅 테이블)
     ↓
-guides/AGENT_GUIDE_CORE.md  (항상-온 공통 규칙)
+guides/GUIDE_CORE.md  (항상-온 공통 규칙)
     ↓
 슬래시 커맨드 파싱 → 매핑 테이블 조회
     ↓
@@ -60,7 +60,7 @@ guides/AGENT_GUIDE_CORE.md  (항상-온 공통 규칙)
 
 ```
 /qa RAG에서 리랭킹 필요 시점
-  → AGENT_GUIDE.md (이 파일) + CORE + qa.md
+  → GUIDE.md (이 파일) + CORE + qa.md
   → skill 가이드는 qa.md 1 개만 로드
 ```
 
@@ -87,7 +87,7 @@ guides/AGENT_GUIDE_CORE.md  (항상-온 공통 규칙)
 ## 규칙 우선순위
 
 ```
-guides/AGENT_GUIDE_CORE.md  >  에이전트 자체 판단
+guides/GUIDE_CORE.md  >  에이전트 자체 판단
 ```
 
 ---

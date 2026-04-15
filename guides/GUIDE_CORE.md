@@ -1,12 +1,12 @@
 ---
-name: AGENT_GUIDE_CORE
+name: GUIDE_CORE
 type: core
 version: 1.0
 last_updated: 2026-04-16
 description: 모든 태스크에 적용되는 항상-온 규칙
 ---
 
-# AGENT_GUIDE_CORE — 공통 규칙
+# GUIDE_CORE — 공통 규칙
 
 모든 슬래시 커맨드에서 작업 시작 전 먼저 로드한다.
 
