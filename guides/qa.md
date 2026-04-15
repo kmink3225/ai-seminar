@@ -24,14 +24,13 @@ description: 내부 문서 검색 후 근거 기반 질의응답
 
 ### Step 2 — 병렬 Grep 검색
 
-4 개 레이어를 한 번에 Grep 한다 (`output_mode: "content"`, `-n`, `-C 2`).
+3 개 레이어를 한 번에 Grep 한다 (`output_mode: "content"`, `-n`, `-C 2`).
 
 | 레이어 | 경로 | 우선순위 |
 |--------|------|----------|
 | L1 변환 레퍼런스 | `references/md/**/*.md` | 1 (주요 근거) |
 | L2 주제 문서 | `topics/**/*.md` | 2 |
 | L3 세미나 자료 | `sessions/**/*.md` | 3 |
-| L4 논문 리뷰 | `papers/**/*.md` | 4 |
 
 ### Step 3 — 근거 충분성 판정
 

@@ -17,8 +17,9 @@ ai-seminar/
 │   ├── agents/
 │   ├── models/
 │   └── tools/
-├── papers/                    # 논문 리뷰
-└── references/                # 외부 링크/자료 모음
+└── references/                # 원본 PDF·논문 및 marker 변환 결과
+    ├── pdfs/
+    └── md/
 ```
 
 ## 환경 설정
