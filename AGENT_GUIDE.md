@@ -16,7 +16,7 @@ scope: project
 > **각 CLI 진입점**:
 > - Claude Code → `CLAUDE.md`
 > - Gemini CLI → `GEMINI.md`
-> - Copilot CLI (및 AGENTS.md 규약 에이전트) → `AGENTS.md`
+> - GitHub Copilot (CLI / IDE) → `.github/copilot-instructions.md`
 >
 > 각 진입점은 CLI 별 Phase 프로토콜·절대 규칙만 담고, 라우팅·저장 규칙·프로젝트 정보는 이 파일이 canonical 이다.
 

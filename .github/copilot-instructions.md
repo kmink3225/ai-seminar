@@ -1,6 +1,6 @@
-# AGENTS.md — Copilot CLI (및 범용 에이전트) 실행 규칙
+# copilot-instructions.md — GitHub Copilot CLI 실행 규칙
 
-> 이 파일은 GitHub Copilot CLI 를 포함한 **AGENTS.md 규약을 따르는 모든 에이전트** 가 세션 시작 시 자동으로 읽는 진입점이다.
+> 이 파일은 GitHub Copilot (CLI / IDE) 가 **세션 시작 시 자동으로 읽는 진입점**이다.
 > 아래 규칙은 리다이렉트가 아니라 **직접 따라야 하는 행동 지시**이다.
 
 ---
@@ -11,15 +11,15 @@
 
 **파일을 읽지 않으면 작업을 시작하지 않는다.** 아래를 읽기 도구로 읽는다.
 
-1. `guides/AGENT_GUIDE_CORE.md` — 항상-온 규칙 (필수)
-2. `AGENT_GUIDE.md` — 슬래시 커맨드 라우팅 테이블
-3. 태스크에 해당하는 skill 가이드 (`guides/<name>.md`)
+1. `../guides/AGENT_GUIDE_CORE.md` — 항상-온 규칙 (필수)
+2. `../AGENT_GUIDE.md` — 슬래시 커맨드 라우팅 테이블
+3. 태스크에 해당하는 skill 가이드 (`../guides/<name>.md`)
 
 동일 세션에서 이미 읽은 파일은 재읽기 생략 가능. "알고 있다"는 이유로는 스킵하지 않는다.
 
 ### Phase 1: 탐색 (해당 시)
 
-`/search`·`/qa`·`/code` 는 `guides/search.md` 의 Step 을 실행해 근거를 모은다. 결과를 사용자에게 1~2 줄로 보고한다.
+`/search`·`/qa`·`/code` 는 `../guides/search.md` 의 Step 을 실행해 근거를 모은다. 결과를 사용자에게 1~2 줄로 보고한다.
 
 ### Phase 2: 실행
 
@@ -35,7 +35,7 @@ Step 을 암묵적으로 건너뛰거나 여러 Step 을 한 문장으로 뭉개
 
 ### Phase 3: 검증 (Self-Check)
 
-작업 보고 **전에** `guides/AGENT_GUIDE_CORE.md` §5 Self-Check 를 출력한다.
+작업 보고 **전에** `../guides/AGENT_GUIDE_CORE.md` §5 Self-Check 를 출력한다.
 
 ### Phase 4: 후속
 
@@ -66,8 +66,8 @@ Step 을 암묵적으로 건너뛰거나 여러 Step 을 한 문장으로 뭉개
 
 ## 라우팅 / 저장 규칙 / 프로젝트 정보
 
-`AGENT_GUIDE.md` 가 canonical 소스다. 이 파일은 **Copilot CLI 및 AGENTS.md 준수 에이전트 전용 Phase 프로토콜과 절대 규칙**만 담는다.
+`../AGENT_GUIDE.md` 가 canonical 소스다. 이 파일은 **Copilot 전용 Phase 프로토콜과 절대 규칙**만 담는다.
 
-- 슬래시 커맨드 라우팅 → `AGENT_GUIDE.md` §슬래시 커맨드 정의
-- 폴더·저장 규칙 → `guides/AGENT_GUIDE_CORE.md` §4
-- Project Info → `AGENT_GUIDE.md` §Project Info
+- 슬래시 커맨드 라우팅 → `../AGENT_GUIDE.md` §슬래시 커맨드 정의
+- 폴더·저장 규칙 → `../guides/AGENT_GUIDE_CORE.md` §4
+- Project Info → `../AGENT_GUIDE.md` §Project Info
