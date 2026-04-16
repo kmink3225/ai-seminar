@@ -62,7 +62,7 @@ marker_single --help
 
 ```bash
 # references/pdfs/ 에 PDF 넣은 뒤
-python scripts/convert_pdfs.py
+python system-scripts/convert_pdfs.py
 ```
 
 결과는 `references/md/<파일명>/<파일명>.md` 로 생성됩니다. 이미 변환된 파일은 건너뜁니다.

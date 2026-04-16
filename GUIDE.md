@@ -75,10 +75,10 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 | `topics/` | 주제별 지식 문서 (engineering, rag, agents, models, tools) — 개념 본문, 발표 자료, Q&A 포함 |
 | `references/pdfs/` | 원본 PDF · 논문 (투입) |
 | `references/md/` | marker 변환 결과 (자동 생성) |
-| `scripts/` | 파이프라인 스크립트 (`convert_pdfs.py`) |
+| `system-scripts/` | 파이프라인 스크립트 (`convert_pdfs.py`) |
 | `guides/` | 에이전트 가이드 |
 
-`references/md/` 는 `python scripts/convert_pdfs.py` 로 채운다 (PDF→MD 변환).
+`references/md/` 는 `python system-scripts/convert_pdfs.py` 로 채운다 (PDF→MD 변환).
 
 ---
 
@@ -95,4 +95,4 @@ guides/GUIDE_CORE.md  >  에이전트 자체 판단
 - **Repo**: https://github.com/kmink3225/ai-seminar
 - **Stack**: Python 3.10+, marker-pdf
 - **Setup**: `pip install -e .`
-- **PDF 변환**: `python scripts/convert_pdfs.py`
+- **PDF 변환**: `python system-scripts/convert_pdfs.py`

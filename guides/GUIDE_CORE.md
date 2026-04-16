@@ -94,7 +94,7 @@ marker 변환은 **모델 로딩·추론에 수 분 ~ 수십 분** 이 걸린다
 1. 관심 PDF 를 발견하면 즉시 변환하지 말고 `references/pdfs/` 에 **모아 둔다** (파일 복사만).
 2. **점심시간·퇴근 전·주말** 등 장시간 자리를 비우는 타이밍에 한 번에 돌린다.
    ```bash
-   python scripts/convert_pdfs.py
+   python system-scripts/convert_pdfs.py
    ```
 3. 신규 투입 PDF 가 3 개 이상 쌓였거나 마지막 변환 이후 24 시간 이상 지났을 때가 좋은 배치 시점.
 
