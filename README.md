@@ -7,12 +7,8 @@
 ```
 ai-seminar/
 ├── README.md                  # 인덱스
-├── sessions/                  # 세미나 회차별 자료 (날짜-주제)
-│   └── YYYY-MM-DD-topic/
-│       ├── README.md          # 발표 요약
-│       └── assets/            # 이미지, 슬라이드 등
-├── topics/                    # 주제별 지식 문서
-│   ├── prompt-engineering/
+├── topics/                    # 주제별 지식 문서 (개념 본문·발표 자료·Q&A)
+│   ├── engineering/
 │   ├── rag/
 │   ├── agents/
 │   ├── models/
@@ -80,15 +76,9 @@ python scripts/convert_pdfs.py
 3. 문서 상단에 메타데이터 (작성자, 날짜, 태그) 포함 권장
 4. 아래 인덱스에 링크 추가
 
-## 세미나 세션
-
-<!-- 새 세션은 최신순으로 위에 추가 -->
-
-- _아직 세션이 없습니다._
-
 ## 주제별 문서
 
-### Prompt Engineering
+### Engineering
 - _문서 추가 예정_
 
 ### RAG

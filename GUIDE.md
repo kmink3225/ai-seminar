@@ -46,7 +46,7 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 
 | 명령어 | 태스크 | 로드할 가이드 (CORE 제외) |
 |--------|--------|--------------------------|
-| `/qa [question]` | **질의응답** — 내부 문서(`references/md/`, `topics/`, `sessions/`) 검색 후 근거 기반 답변. 파일 변경 없음 | `guides/qa.md` |
+| `/qa [question]` | **질의응답** — 내부 문서(`references/md/`, `topics/`) 검색 후 근거 기반 답변. 파일 변경 없음 | `guides/qa.md` |
 
 ### 사용 예시
 
@@ -72,8 +72,7 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 
 | 폴더 | 용도 |
 |------|------|
-| `sessions/` | 세미나 회차별 자료 (YYYY-MM-DD-topic) |
-| `topics/` | 주제별 지식 문서 (prompt-engineering, rag, agents, models, tools) |
+| `topics/` | 주제별 지식 문서 (engineering, rag, agents, models, tools) — 개념 본문, 발표 자료, Q&A 포함 |
 | `references/pdfs/` | 원본 PDF · 논문 (투입) |
 | `references/md/` | marker 변환 결과 (자동 생성) |
 | `scripts/` | 파이프라인 스크립트 (`convert_pdfs.py`) |

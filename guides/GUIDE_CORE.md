@@ -35,7 +35,7 @@ description: 모든 태스크에 적용되는 항상-온 규칙
 
 ## 2. 검색/조회 규칙
 
-- 내부 문서 검색은 `references/md/`, `topics/`, `sessions/` 3개 폴더를 **병렬 Grep** 으로 조회한다.
+- 내부 문서 검색은 `references/md/`, `topics/` 2개 폴더를 **병렬 Grep** 으로 조회한다.
 - 근거가 없는 주장은 하지 않는다. 근거가 부족하면 "근거 부족" 또는 "모름" 으로 명시한다.
 - 인용 시 파일 경로와 라인 번호를 `path:line` 형식으로 남긴다.
 
@@ -54,13 +54,12 @@ description: 모든 태스크에 적용되는 항상-온 규칙
 
 새로 만든 산출물은 아래 기준으로 배치한다.
 
-| 산출물 | 저장 위치 |
-|--------|-----------|
-| 세미나 발표 자료·노트 | `sessions/YYYY-MM-DD-{topic}/` |
-| 특정 주제 개념 정리 | `topics/{prompt-engineering|rag|agents|models|tools}/` |
-| 논문 원본 PDF | `references/pdfs/` (marker 로 `references/md/` 자동 변환) |
-| 외부 링크 모음 | `references/README.md` 의 링크 섹션 |
-| 실행 가능한 예제 코드 | 관련 `topics/*/` 또는 `sessions/*/` 내부 |
+| 산출물 | 저장 위치 | 비고 |
+|--------|-----------|------|
+| 개념 본문 (정의·원리·예제·Q&A) | `topics/{주제}/` | 발표용 문서, 세미나 Q&A·논의도 여기에 둔다 |
+| 논문 원본 PDF | `references/pdfs/` | marker 로 `references/md/` 자동 변환 |
+| 외부 링크 모음 | `references/README.md` 의 링크 섹션 | |
+| 실행 가능한 예제 코드 | 관련 `topics/*/` 내부 | |
 
 ---
 
