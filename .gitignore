@@ -8,3 +8,7 @@ __pycache__/
 *.pyc
 .env
 .env.local
+.pdf
+pdf/
+references/pdfs/
+!references/pdfs/.gitkeep
