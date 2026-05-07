@@ -10,7 +10,7 @@ description: PDF → MD 변환. /convert-pdf 한 줄로 환경 자동 부트스�
 2. `guides/GUIDE_CORE.md` 를 Read 로 읽는다 (공통 규칙).
 3. `guides/convert-pdf.md` 를 Read 로 읽는다 (skill).
 4. convert-pdf.md 의 Step 1~6 을 **순서대로** 실행한다.
-   - Step 1: 환경 자동 부트스트랩 — 1-A 현재 셸에서 marker 작동? → 1-B 다른 poetry env·venv·conda env 검색 (있으면 재사용) → 1-C 없으면 사용자 동의 1 회 후 poetry 자동 설치 (필요 시 1-C-pre 에서 poetry 자체도 설치) + `poetry install` 로 가상환경·의존성 일괄 → 1-D 모델 가중치 안내. 결정된 python 경로를 `PYTHON_BIN` 으로 저장
+   - Step 1: 환경 자동 부트스트랩 (poetry 통일) — 1-A 현재 셸에서 marker 작동? → 1-B `poetry env info -p` 로 기존 poetry env 검사 (있으면 재사용) → 1-C 없으면 사용자 동의 1 회 후 poetry 자동 설치 (필요 시 1-C-pre 에서 poetry 자체도 설치) + `poetry install` 로 가상환경·의존성 일괄 → 1-D 모델 가중치 안내. 결정된 python 경로를 `PYTHON_BIN` 으로 저장
    - Step 2: 미변환 PDF 탐지 — 인자 없으면 `references/pdfs/` 전체, 인자 있으면 해당 파일/폴더만
    - Step 3: 배치 권고 메시지 출력 (`GUIDE_CORE.md` §7)
    - Step 4: 사용자 동의 확인 ("지금 변환" / "배치 무시" / "바로 돌려")

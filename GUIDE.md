@@ -74,6 +74,40 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 
 ---
 
+## Skill 행동 원칙 (모든 스킬 공통)
+
+이 프로젝트는 **poetry 로 의존성을 통일 관리** 한다. conda·venv·uv 등 다른 도구는 사용하지 않는다.
+
+스킬은 사용자 환경 상태와 무관하게 **끝까지 도달** 한다. 다음 메시지로 중단하지 않는다.
+
+- "가상환경을 활성화한 뒤 다시 호출하라"
+- "README 의 셋업을 먼저 하라"
+- "가상환경 셋업이 필요하다. 종료한다"
+
+스킬이 현재 셸의 활성화 상태를 직접 바꿀 수 없다는 사실은 사용자에게 부담을 떠넘기는 근거가 되지 않는다 — **`poetry run` 또는 절대 경로로 그 env 의 python 을 직접 호출** 하면 활성화 없이도 작동한다.
+
+```bash
+# 활성화 없이 그 env 의 python 직접 호출 (스킬이 사용하는 패턴)
+poetry run python system-scripts/convert_pdfs.py ...
+<poetry-env>\Scripts\python.exe system-scripts/convert_pdfs.py ...    # Windows
+<poetry-env>/bin/python system-scripts/convert_pdfs.py ...            # Unix
+```
+
+### 환경 부트스트랩 표준 절차
+
+스킬이 외부 도구 (marker, langchain 등) 를 호출해야 할 때 다음 순서를 따른다.
+
+1. **현재 셸에서 작동?** → 통과 (가장 빠른 경로)
+2. **기존 poetry env 가 있나?** `poetry env info -p` 로 검사 → 발견 + 도구 import 성공 시 그 env 의 python 절대 경로 (또는 `poetry run`) 로 호출 (활성화 X)
+3. **없음** → 사용자 동의 1 회 후 자동 셋업:
+   - poetry 자체가 미설치라면 먼저 `pipx install poetry` 또는 `python -m pip install --user poetry` 로 설치
+   - 이어서 `poetry install` 로 가상환경 + 의존성 일괄 셋업
+   - 결정된 env 의 python 경로 (또는 `poetry run`) 로 후속 호출
+
+세 단계 어디서도 "활성화하고 다시 호출하라" 로 종료하지 않는다. 사용자가 알아야 할 명령은 슬래시 한 줄뿐이다.
+
+---
+
 ## 폴더 목록
 
 | 폴더 | 용도 |

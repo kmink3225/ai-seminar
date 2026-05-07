@@ -23,8 +23,9 @@ ai-seminar/
 이 프로젝트는 **poetry** 로 의존성을 관리합니다. `/convert-pdf` 스킬을 호출하면 자동으로 셋업되지만, 수동 셋업도 가능합니다.
 
 ### 전제
-- Python 3.10 이상 (3.13 이하). `pyenv` / `conda` / `python.org` 설치본 모두 가능.
+- Python 3.10 이상 (3.13 이하). `pyenv` 또는 `python.org` 설치본 가능.
 - poetry 1.5 이상 (없으면 1단계에서 설치).
+- 의존성 관리는 poetry 로 통일합니다. conda·venv·uv 는 사용하지 않습니다.
 - GPU 없어도 동작 (CPU에서 느릴 뿐). CUDA 있으면 자동 활용.
 
 ### 1단계 — poetry 설치 (한 번만)

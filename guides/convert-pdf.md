@@ -1,8 +1,8 @@
 ---
 name: convert-pdf
 type: skill
-version: 1.4
-description: references/pdfs/ 의 PDF 를 marker 로 references/md/ 에 변환. 첫 실행 시 기존 환경 자동 발견 → 없으면 poetry 로 자동 설치까지 한 번에. 인자로 파일/폴더 지정 가능.
+version: 1.5
+description: references/pdfs/ 의 PDF 를 marker 로 references/md/ 에 변환. 의존성은 poetry 로 통일 관리. 첫 실행 시 기존 poetry env 자동 발견 → 없으면 poetry 자동 설치 + poetry install 까지 한 번에. 인자로 파일/폴더 지정 가능.
 ---
 
 # convert-pdf — PDF → MD 변환
@@ -11,10 +11,10 @@ description: references/pdfs/ 의 PDF 를 marker 로 references/md/ 에 변환. 
 
 `references/pdfs/` 에 누적된 PDF 를 `marker` 로 `references/md/` 에 markdown 으로 변환한다. 이미 변환된 파일은 건너뛴다 (idempotent).
 
-이 스킬은 **프로그래밍 미경험자도 `/convert-pdf` 한 줄로 끝까지 도달** 하도록 설계됐다.
+이 스킬은 **프로그래밍 미경험자도 `/convert-pdf` 한 줄로 끝까지 도달** 하도록 설계됐다. 의존성 관리는 **poetry 로 통일** 한다 (conda·venv·uv 등 다른 도구는 사용하지 않는다).
 
-- 이미 marker 가 깔린 환경이 있으면 자동으로 발견해 재사용
-- 없으면 사용자 동의 1 회 후 poetry 로 자동 셋업 (가상환경 + 의존성 설치 일괄)
+- 이미 marker 가 깔린 poetry env 가 있으면 자동으로 발견해 재사용
+- 없으면 사용자 동의 1 회 후 poetry 로 자동 셋업 (가상환경 + 의존성 일괄)
 - 모든 단계는 "이미 있는가?" 를 먼저 검사 → 있으면 스킵
 
 호출 인자에 따라 두 가지 모드로 동작한다.
@@ -26,7 +26,7 @@ description: references/pdfs/ 의 PDF 를 marker 로 references/md/ 에 변환. 
 
 ### Step 1 — 환경 자동 부트스트랩
 
-목표: 변환 가능한 python 경로 (`PYTHON_BIN`) 를 결정한다. 이미 설치된 게 있으면 즉시 통과, 없으면 poetry 로 자동 생성. 단계는 빠른 경로부터 차례로 시도한다.
+목표: 변환 가능한 python 경로 (`PYTHON_BIN`) 를 결정한다. 이미 설치된 게 있으면 즉시 통과, 없으면 poetry 로 자동 생성.
 
 #### 1-A. 현재 셸에서 marker 가 작동하는가 (가장 빠른 통과)
 
@@ -36,31 +36,30 @@ marker_single --help
 
 종료 코드 0 → `PYTHON_BIN` = 현재 셸의 python (`python` 또는 `sys.executable`). Step 2 로.
 
-#### 1-B. 다른 환경에 marker 가 이미 깔려 있는가
+#### 1-B. 기존 poetry env 에 marker 가 이미 깔려 있는가
 
-현재 PATH 에 없어도 다른 가상환경에 깔려 있을 수 있다. 다음을 차례로 검사한다.
+이 프로젝트의 poetry env 를 검사한다.
 
-1. **poetry env** (이 프로젝트 기준):
-   ```bash
-   poetry env info -p
-   ```
-   출력이 있으면 그 경로의 python (`<env>/Scripts/python.exe` 또는 `<env>/bin/python`) 으로 `python -c "import marker"` 시도
-2. **프로젝트 로컬 venv**:
-   - Windows: `.venv\Scripts\python.exe`
-   - Unix: `.venv/bin/python`
-3. **conda envs**:
-   - `conda env list --json` 으로 모든 env 경로 나열 (conda 가용 시에만)
-   - 각 env 의 python 으로 `python -c "import marker"` 시도
-
-발견 시 사용자에게 한 줄로 보고:
-
-```text
-[env] 기존 환경 발견: C:\...\miniconda3\envs\blog\Scripts\python.exe (marker 설치됨, 재사용)
+```bash
+poetry env info -p
 ```
 
-→ Step 1-D 로.
+출력 (env 경로) 이 있으면 그 env 의 python (`<env>/Scripts/python.exe` 또는 `<env>/bin/python`) 으로 marker import 시도:
 
-발견되지 않으면 → Step 1-C 로.
+```bash
+<env>/Scripts/python.exe -c "import marker"     # Windows
+<env>/bin/python -c "import marker"             # Unix
+```
+
+성공 시 사용자에게 한 줄 보고:
+
+```text
+[env] poetry env 발견: <env>/.../python.exe (marker 설치됨, 재사용)
+```
+
+`PYTHON_BIN` 결정 후 Step 1-D 로.
+
+`poetry env info -p` 출력이 없거나 marker import 실패면 → Step 1-C 로.
 
 #### 1-C. poetry 로 자동 셋업 (사용자 동의 1 회)
 
@@ -107,27 +106,26 @@ poetry --version
 poetry install
 ```
 
-설치 완료 후 PYTHON_BIN 결정:
+설치 완료 후 `PYTHON_BIN` 결정:
 
 ```bash
-# poetry env 의 python 경로 추출
 poetry env info -p
 ```
 
 - Windows: `<env>\Scripts\python.exe`
 - Unix: `<env>/bin/python`
 
-또는 모든 후속 호출에 `poetry run` prefix 사용:
+또는 후속 호출에 `poetry run` prefix 사용:
 
 ```bash
 poetry run python system-scripts/convert_pdfs.py [args]
 ```
 
-설치 후 `poetry run python -c "import marker"` 로 재검증. 실패 시 에러 그대로 보고하고 종료.
+설치 후 `poetry run python -c "import marker"` 로 재검증. 실패 시 에러 보고하고 종료.
 
 #### 1-D. 모델 가중치 안내
 
-PYTHON_BIN 이 결정되었다. 단, marker 가 모델 가중치를 다운로드한 적이 있는지 스킬은 알 수 없다. 첫 변환 시점에 자동 다운로드되며, 이때 5~10 분 추가 소요될 수 있음을 미리 안내한다.
+`PYTHON_BIN` 이 결정되었다. 단, marker 가 모델 가중치를 다운로드한 적이 있는지 스킬은 알 수 없다. 첫 변환 시점에 자동 다운로드되며, 이때 5~10 분 추가 소요될 수 있음을 미리 안내한다.
 
 ### Step 2 — 미변환 PDF 탐지
 
@@ -171,13 +169,12 @@ Step 1 에서 결정한 `PYTHON_BIN` 으로 스크립트를 호출한다. 사용
 # 1-A 통과: 현재 셸 python 사용
 python system-scripts/convert_pdfs.py [사용자 인자]
 
-# 1-B 발견: 그 환경의 python 직접 호출 (셸 활성화 불필요)
-<conda-prefix>\envs\blog\Scripts\python.exe system-scripts/convert_pdfs.py [args]
-# 또는
-conda run -n blog python system-scripts/convert_pdfs.py [args]
-
-# 1-C 새 셋업 (poetry): poetry run 사용
+# 1-B 또는 1-C: poetry env 사용 (셸 활성화 불필요)
 poetry run python system-scripts/convert_pdfs.py [사용자 인자]
+
+# 또는 절대 경로
+<poetry-env>\Scripts\python.exe system-scripts/convert_pdfs.py [사용자 인자]   # Windows
+<poetry-env>/bin/python system-scripts/convert_pdfs.py [사용자 인자]           # Unix
 ```
 
 스크립트는 idempotent — 이미 변환된 파일은 자동으로 건너뛴다.
@@ -192,7 +189,9 @@ poetry run python system-scripts/convert_pdfs.py [사용자 인자]
 
 - `references/md/` 의 결과 markdown 을 직접 수정 (다음 변환 때 덮어써짐)
 - 사용자 동의 없이 poetry 자동 설치 또는 `poetry install` 실행 (자동 셋업은 1-C-pre·1-C-main 의 명시 동의 후에만)
-- 시스템 python 에 marker 직접 설치 (`pip install marker-pdf` 강행 금지) — poetry 가 가상환경 격리를 담당
+- conda·venv·uv 같은 다른 도구로 marker 설치 시도 — 의존성 관리는 poetry 로 통일
+- 시스템 python 에 marker 직접 설치 (`pip install marker-pdf` 강행 금지)
 - 배치 권고 없이 즉시 변환 실행
 - 인자가 없다는 이유로 "변환할 게 있는지 모르겠다" 로 종료 — 인자 없음은 "전체 모드" 의 정상 입력
-- 1-B 의 기존 환경 검색을 건너뛰고 1-C 새 셋업으로 직행 (이미 깔린 환경 재사용이 우선)
+- 1-B 의 기존 poetry env 검색을 건너뛰고 1-C 새 셋업으로 직행 (이미 깔린 환경 재사용이 우선)
+- "가상환경을 활성화한 뒤 다시 호출하라" 또는 "README 셋업을 먼저 하라" 같은 메시지로 종료 — Step 1-B (poetry env 재사용) 또는 Step 1-C (poetry 자동 셋업) 로 자동 해결할 일이다 (`GUIDE.md` §Skill 행동 원칙 참조)
