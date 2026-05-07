@@ -27,6 +27,7 @@ from __future__ import annotations
 import argparse
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -50,7 +51,12 @@ def convert(pdf: Path) -> int:
         "--output_format",
         "markdown",
     ]
-    return subprocess.run(cmd, check=False).returncode
+    t0 = time.monotonic()
+    rc = subprocess.run(cmd, check=False).returncode
+    elapsed = time.monotonic() - t0
+    status = "ok" if rc == 0 else "failed"
+    print(f"[time] {pdf.name}: {elapsed:.1f}s ({status})")
+    return rc
 
 
 def resolve_target(arg: str) -> Path | None:
@@ -116,16 +122,18 @@ def main() -> int:
 
     skipped = 0
     failed: list[str] = []
+    total_t0 = time.monotonic()
     for pdf in pdfs:
         if already_converted(pdf):
             skipped += 1
             continue
         if convert(pdf) != 0:
             failed.append(pdf.name)
+    total_elapsed = time.monotonic() - total_t0
 
     print(
         f"\n[done] total={len(pdfs)} skipped={skipped} failed={len(failed)} "
-        f"(output: {MD_DIR})"
+        f"elapsed={total_elapsed:.1f}s (output: {MD_DIR})"
     )
     for f in failed:
         print(f"  - FAILED: {f}")
