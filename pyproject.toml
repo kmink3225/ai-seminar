@@ -1,24 +1,21 @@
-[project]
+[tool.poetry]
 name = "ai-seminar"
 version = "0.1.0"
 description = "AI 지식 공유 세미나 아카이브 및 PDF→MD 변환 파이프라인"
 readme = "README.md"
-requires-python = ">=3.10,<3.14"
-dependencies = [
-    "marker-pdf>=1.10.0",
-]
+authors = ["Kwangmin Kim"]
+package-mode = false
 
-[project.optional-dependencies]
-dev = [
-    "ruff>=0.6.0",
-]
+[tool.poetry.dependencies]
+python = ">=3.10,<3.14"
+marker-pdf = ">=1.10.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = ">=0.6.0"
 
 [build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-packages = []
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 100

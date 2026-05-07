@@ -20,54 +20,65 @@ ai-seminar/
 
 ## 환경 설정
 
-PDF → Markdown 변환(marker) 파이프라인을 사용하려면 아래 1회 세팅이 필요합니다.
+이 프로젝트는 **poetry** 로 의존성을 관리합니다. `/convert-pdf` 스킬을 호출하면 자동으로 셋업되지만, 수동 셋업도 가능합니다.
 
 ### 전제
 - Python 3.10 이상 (3.13 이하). `pyenv` / `conda` / `python.org` 설치본 모두 가능.
+- poetry 1.5 이상 (없으면 1단계에서 설치).
 - GPU 없어도 동작 (CPU에서 느릴 뿐). CUDA 있으면 자동 활용.
 
-### 방법 A — conda (권장, 팀원 간 재현성 좋음)
+### 1단계 — poetry 설치 (한 번만)
+
+poetry 가 없으면:
 
 ```bash
-conda create -n ai-seminar python=3.11 -y
-conda activate ai-seminar
-pip install -e .
+# 방법 A — pipx (권장)
+pipx install poetry
+
+# 방법 B — pip
+python -m pip install --user poetry
+
+# 확인
+poetry --version
 ```
 
-### 방법 B — venv
+### 2단계 — 의존성 설치
 
 ```bash
-python -m venv .venv
-# Windows
-.venv\Scripts\activate
-# macOS/Linux
-source .venv/bin/activate
-pip install -e .
+poetry install
 ```
 
-### 방법 C — uv (빠름)
-
-```bash
-uv venv
-uv pip install -e .
-```
+이 한 줄이 가상환경을 자동으로 만들고 `marker-pdf` 를 포함한 모든 의존성을 설치합니다.
 
 ### 설치 확인
 
 ```bash
-marker_single --help
+poetry run marker_single --help
 ```
 
 ### PDF 변환 실행
 
 ```bash
-# references/pdfs/ 에 PDF 넣은 뒤
-python system-scripts/convert_pdfs.py
+# references/pdfs/ 에 PDF 넣은 뒤 — 전체 변환
+poetry run python system-scripts/convert_pdfs.py
+
+# 단일 파일
+poetry run python system-scripts/convert_pdfs.py paper.pdf
+
+# 폴더
+poetry run python system-scripts/convert_pdfs.py references/pdfs/sub/
+```
+
+또는 슬래시 커맨드로 한 줄 실행:
+
+```
+/convert-pdf
+/convert-pdf paper.pdf
 ```
 
 결과는 `references/md/<파일명>/<파일명>.md` 로 생성됩니다. 이미 변환된 파일은 건너뜁니다.
 
-> 처음 실행 시 marker가 모델 가중치를 다운로드합니다(수백 MB). 네트워크 필요.
+> 처음 실행 시 marker가 모델 가중치를 다운로드합니다 (수백 MB, 5~10 분). 네트워크 필요.
 
 ## 기여 방법
 
