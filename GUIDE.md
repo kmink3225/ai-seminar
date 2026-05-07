@@ -1,8 +1,8 @@
 ---
 name: GUIDE
 type: router
-version: 2.0
-last_updated: 2026-04-16
+version: 2.1
+last_updated: 2026-05-07
 description: >
   슬래시 커맨드 라우터. 사용자 명령에 매핑된 가이드만 로드한다.
   공통 규칙은 guides/GUIDE_CORE.md — 이 파일이 로드를 지시한다.
@@ -47,6 +47,7 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 | 명령어 | 태스크 | 로드할 가이드 (CORE 제외) |
 |--------|--------|--------------------------|
 | `/qa [question]` | **질의응답** — 내부 문서(`references/md/`, `topics/`) 검색 후 근거 기반 답변. 파일 변경 없음 | `guides/qa.md` |
+| `/convert-pdf` | **PDF → MD 변환** — `references/pdfs/` 의 신규 PDF 를 marker 로 `references/md/` 에 일괄 변환. 첫 실행 시 marker 의존성 자동 설치, 배치 권고 후 사용자 동의 시 실행 | `guides/convert-pdf.md` |
 
 ### 사용 예시
 
@@ -54,6 +55,7 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 /qa RAG 에서 리랭킹이 언제 필요한가?
 /qa chain-of-thought 와 tree-of-thought 의 차이는?
 /qa attention 메커니즘의 핵심 아이디어는?
+/convert-pdf
 ```
 
 ### 커맨드별 로드 비교
@@ -62,6 +64,10 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 /qa RAG에서 리랭킹 필요 시점
   → GUIDE.md (이 파일) + CORE + qa.md
   → skill 가이드는 qa.md 1 개만 로드
+
+/convert-pdf
+  → GUIDE.md (이 파일) + CORE + convert-pdf.md
+  → skill 가이드는 convert-pdf.md 1 개만 로드
 ```
 
 **슬래시 커맨드가 없으면**: 일반 질문으로 간주, 가이드 제약 없이 자율 답변. 사용자가 명시적으로 질의응답을 요청하면 `/qa` 를 적용한다.
@@ -78,7 +84,7 @@ guides/GUIDE_CORE.md  (항상-온 공통 규칙)
 | `system-scripts/` | 파이프라인 스크립트 (`convert_pdfs.py`) |
 | `guides/` | 에이전트 가이드 |
 
-`references/md/` 는 `python system-scripts/convert_pdfs.py` 로 채운다 (PDF→MD 변환).
+`references/md/` 는 `/convert-pdf` 스킬 (또는 `python system-scripts/convert_pdfs.py` 직접 실행) 로 채운다.
 
 ---
 
@@ -95,4 +101,4 @@ guides/GUIDE_CORE.md  >  에이전트 자체 판단
 - **Repo**: https://github.com/kmink3225/ai-seminar
 - **Stack**: Python 3.10+, marker-pdf
 - **Setup**: `pip install -e .`
-- **PDF 변환**: `python system-scripts/convert_pdfs.py`
+- **PDF 변환**: `/convert-pdf` (또는 `python system-scripts/convert_pdfs.py` 직접)

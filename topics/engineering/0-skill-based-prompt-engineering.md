@@ -186,3 +186,8 @@ Prompt 수정으로 해결되면 멈추고, 안 되면 Context, 여전히 안 �
 - Prompt 만 반복 수정하면서 Harness 의 제약을 모르면 시간만 낭비하고, Harness 를 바꿔야 할 상황에서 Context 만 만지면 임시방편만 쌓인다.
 
 다음 글에서는 이 프로젝트(`ai-seminar`)의 실제 시스템 프롬프트 체인(`CLAUDE.md` → `GUIDE.md` → `GUIDE_CORE.md` → `guides/qa.md`)을 예시로 들어, 세 층위가 구체적으로 어떻게 구현되어 있는지를 분석한다. 
+
+
+## QnA
+
+## 다음 발표자

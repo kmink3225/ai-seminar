@@ -71,6 +71,10 @@ python system-scripts/convert_pdfs.py
 
 ## 기여 방법
 
+운영자·참여자 역할별 상세 안내는 [PARTICIPATION.md](./PARTICIPATION.md) 참조. AI 엔지니어링이 익숙하지 않아도 PR 환영한다 (Lv1 의 "자기 도메인 PDF 던지기" 는 1 분 안에 가능).
+
+빠른 요약:
+
 1. 주제에 맞는 폴더에 마크다운 파일 추가
 2. 파일명: `kebab-case.md`
 3. 문서 상단에 메타데이터 (작성자, 날짜, 태그) 포함 권장
