@@ -165,7 +165,6 @@ poetry run python system-scripts/convert_pdfs.py a.pdf b.pdf sub/
 
 ## 검색 팁
 
-- GitHub 상단 검색창에 `repo:kmink3225/ai-seminar <키워드>` 로 전체 검색
 - 파일명 검색은 `t` 키로 빠르게 접근
 - 새 슬래시 커맨드 추가는 [`GUIDE.md`](./GUIDE.md) 라우팅 테이블에서 시작 (절차는 위 Engineering §2 매뉴얼 참조)
 - 에이전트 공통 규칙은 [`guides/GUIDE_CORE.md`](./guides/GUIDE_CORE.md) (한다 체·이모지 금지·근거 인용 등)

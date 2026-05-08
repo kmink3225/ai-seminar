@@ -225,8 +225,6 @@ build-backend = "poetry.core.masonry.api"
 
 (빈 슬롯 — 발표 후 채운다)
 
-## 다음 회
+## 다음 발표자 / 발표 자료
 
-- 발표자: TBD
-- 주제: TBD
-- 일정: TBD
+홍길동 - `TBD`

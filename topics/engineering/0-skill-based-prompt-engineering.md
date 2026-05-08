@@ -84,7 +84,7 @@ Claude Code 와 GitHub Copilot CLI 는 둘 다 터미널에서 코드를 다루�
 | 확장 모델 | slash command, hook, MCP 서버, skill 파일 (`SKILL.md`) | MCP 서버, skill 파일 (`SKILL.md`, Claude 와 동일 형식 호환), custom instructions |
 | 멀티 에이전트 | Agent 도구로 서브에이전트 호출 | `/fleet` 으로 병렬 서브에이전트 조율 (동일 태스크 다수 실행 후 수렴) |
 | 작업 모드 | 단일 대화 흐름 | Plan / Autopilot 모드 전환 (Shift+Tab)|
-| 과금 단위 | **토큰 사용량 기반** — 입력·출력 토큰 양만큼 차감 | **요청 횟수 기반** — 토큰 양과 무관하게 request 1 회당 정해진 만큼 차감 |
+| 과금 단위 | **토큰 사용량 기반** — 입력·출력 토큰 양만큼 차감 | **요청 횟수 기반** — 토큰 양과 무관하게 request 1 회당 정해진 만큼 차감 (by 2026-05-31) -> 6월 부터 종량제로 변경된다는 뉴스가 나왔음|
 
 
 같은 "터미널 AI 에이전트" 라도 **하네스 설계에 따라 할 수 있는 일의 범위와 안정성이 달라진다**.    
@@ -190,4 +190,6 @@ Prompt 수정으로 해결되면 멈추고, 안 되면 Context, 여전히 안 �
 
 ## QnA
 
-## 다음 발표자
+## 다음 발표자 / 발표 자료
+
+김광민 - `topics\engineering\1-skill-based-prompt-example.md`

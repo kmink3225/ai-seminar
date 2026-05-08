@@ -313,7 +313,7 @@ CLI 진입점 → GUIDE.md (라우터) → guides/GUIDE_CORE.md (공통 규칙) 
 ### 아키텍트
 
 Core 개발팀 전원: 김광민이 첫 주자로 스타트
-(다른 사람들도 스킬을 만들어 적용할 것을 권장합니다)
+(다른 사람들도 스킬을 만들어 적용해보는 경험을 하는 것을 추천)
 
 ### 아키텍처
 
@@ -337,6 +337,6 @@ ai-seminar/
 
 ## QnA
 
-## 다음 발표자
+## 다음 발표자 / 발표 자료
 
-
+김광민 - `topics\engineering\2-convert-pdf-skill-example.md`
